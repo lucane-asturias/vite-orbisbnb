@@ -1,25 +1,68 @@
 <template>
   <div v-if="notification.active" 
-    class="notification is-light py-3 px-3 is-size-7"
+    class="flex justify-between bg-whitesmoke p-2 mb-4"
     :class="{ 'is-primary': darkMode, 'is-info': !darkMode }">
-    <button class="delete" @click="toggleNotification"></button>
-    {{ notification.message }}
+
+    <p class="ml-3 text-sm text-blue-600 tracking-wide" v-text="notification.message" />
+
+    <button class="teste" @click="toggleNotification" />
+
   </div>
 </template>
 
-<script>
-import useDarkMode from '../hooks/useDarkMode';
+<script lang="ts" setup>
+  import useDarkMode from '../hooks/useDarkMode';
 
-export default {
-  name: 'Notification',
-  props: ['notification', 'toggleNotification'],
-  setup() {
-    const { darkMode } = useDarkMode();
+  type Notification = { message: string; active: boolean }
 
-    return {
-      darkMode
-    }
+  interface Props {
+    notification: Notification
+    toggleNotification: Function
   }
-}
+
+  defineProps<Props>()
+
+  const { darkMode } = useDarkMode()
 </script>
- 
+
+<style>
+
+/* CSS to draw a X */
+
+.teste {
+  background-color: rgba(10, 10, 10, 0.3);
+  border-radius: 50%;
+  cursor: pointer;
+  pointer-events: auto;
+  height: 20px;
+  width: 20px;
+  outline: none;
+  position: relative;
+}
+
+.teste::before, .teste::after {
+  background-color: white;
+  content: "";
+  display: block;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  transform-origin: center center;
+}
+
+.teste::before {
+  height: 2px;
+  width: 50%;
+}
+
+.teste::after {
+  height: 50%;
+  width: 2px;
+}
+
+.teste:hover {
+  background-color: rgba(10, 10, 10, 0.6);
+}
+
+</style>
