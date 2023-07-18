@@ -1,5 +1,6 @@
-import gql from 'graphql-tag';
+import gql from 'graphql-tag'
 
+//  Query all field from the query listings
 const ListingsQuery = gql`
   query Listings {
     listings {
@@ -15,6 +16,6 @@ const ListingsQuery = gql`
       rating
     }
   }
-`;
+`
 
-export default ListingsQuery;
+export default ListingsQuery

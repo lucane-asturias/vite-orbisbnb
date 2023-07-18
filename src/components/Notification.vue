@@ -1,17 +1,20 @@
 <template>
-  <div v-if="notification.active" 
-    class="flex justify-between bg-whitesmoke p-2 mb-4"
-    :class="{ 'is-primary': darkMode, 'is-info': !darkMode }">
+  <div v-if="notification.active"
+    class="notification flex justify-between bg-whitesmoke p-2 mb-7">
 
-    <p class="ml-3 text-sm text-blue-600 tracking-wide" v-text="notification.message" />
+    <p 
+      class="ml-3 text-sm tracking-wide" 
+      :class="{ 'text-teal-600': darkMode, 'text-blue-600': !darkMode }"  
+      v-text="notification.message"
+    />
 
-    <button class="teste" @click="toggleNotification" />
+    <button class="x" @click="toggleNotification" />
 
   </div>
 </template>
 
 <script lang="ts" setup>
-  import useDarkMode from '../hooks/useDarkMode';
+  import useDarkMode from '../composables/useDarkMode';
 
   type Notification = { message: string; active: boolean }
 
@@ -27,9 +30,16 @@
 
 <style>
 
+.notification { animation: fadeIn 1.5s; }
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
 /* CSS to draw a X */
 
-.teste {
+.x {
   background-color: rgba(10, 10, 10, 0.3);
   border-radius: 50%;
   cursor: pointer;
@@ -40,7 +50,7 @@
   position: relative;
 }
 
-.teste::before, .teste::after {
+.x::before, .x::after {
   background-color: white;
   content: "";
   display: block;
@@ -51,17 +61,17 @@
   transform-origin: center center;
 }
 
-.teste::before {
+.x::before {
   height: 2px;
   width: 50%;
 }
 
-.teste::after {
+.x::after {
   height: 50%;
   width: 2px;
 }
 
-.teste:hover {
+.x:hover {
   background-color: rgba(10, 10, 10, 0.6);
 }
 

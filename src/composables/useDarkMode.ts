@@ -6,7 +6,7 @@ const darkModeActive = ref(false)
 const useDarkMode = () => {
   const { setNotification } = useNotification()
 
-  const toggleDarkMode = () => {
+  const toggleDarkMode = (): { active: boolean } => {
     darkModeActive.value = !darkModeActive.value
 
     const modeType = darkModeActive.value ? 'Dark Mode' : 'Light Mode'

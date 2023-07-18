@@ -7,13 +7,15 @@ const data = reactive({
 
 const useNotification = () => {
   
-  const setNotification = (newMessage) => {
+  const setNotification = (newMessage: string) => {
     data.message = newMessage
-    return data.active = true
+    data.active = true
+    setTimeout(() => data.active = false, 30000)
   }
 
   const toggleNotification = () => {
     data.active = !data.active
+    setTimeout(() => data.active = !data.active, 30000)
   }
 
   return {
