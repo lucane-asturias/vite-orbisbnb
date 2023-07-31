@@ -1,5 +1,5 @@
 <template>
-  <header class="basic-layout overflow-auto" :class="{ 'bg-black': darkMode }">
+  <header class="basic-layout overflow-auto" :class="{ 'bg-aliceblue': darkMode }">
 
     <NavbarMenu />
 

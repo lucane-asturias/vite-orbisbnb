@@ -1,25 +1,9 @@
 <script lang="ts" setup>
-  import DeleteListingMutation from '@/graphql/DeleteListingMutation'
-  import useDarkMode from '@/composables/useDarkMode'
-  import useNotification from '@/composables/useNotification'
-  import useGraphQL from '@/composables/useGraphQL'
+  import { useListingsListItem } from '../composables/useListingsListItem'
 
   const props = defineProps<{ listing: object }>()
 
-  const { darkMode } = useDarkMode()
-  const { setNotification, toggleNotification } = useNotification()
-
-  const { useMutationComposable } = useGraphQL()
-  const { mutate: deleteListing } = useMutationComposable(DeleteListingMutation)
-
-  const removeListing = () => {
-    const sure = window.confirm("Are you sure you want to delete it?")
-
-    if (sure) {
-      setNotification("Listing is to be deleted")
-      return deleteListing({ id: props.listing.id })
-    }
-  }
+  const { darkMode, removeListing, formatPrice } = useListingsListItem()
 </script>
 
 <template>
@@ -48,7 +32,7 @@
             class="font-bold" 
             :class="{ 'text-teal-500': darkMode, 'text-blue-500': !darkMode }"
           >
-            <span>${{ 10000/100 }}/day</span> · <span>Rating: 5/5</span>
+            <span>{{ formatPrice(listing.price) }}/day</span> · <span>Rating: 5/5</span>
           </small>
 
         </p>
@@ -56,11 +40,11 @@
     </article>
 
     <div class="mr-0.5">
-      <button @click="removeListing"
+      <button @click="removeListing(listing.id)"
         class="text-xs tracking-wider border-transparent font-bold py-2 px-3 rounded shadow float-right"
         :class="{ 
-          'text-cyan-800 bg-neutral-100 hover:bg-neutral-200': darkMode, 
-          'text-blue-500 bg-slate-100 hover:bg-slate-200': !darkMode 
+          'text-red-400 bg-darkgreyish hover:bg-lightgreyish': darkMode, 
+          'text-red-400 bg-red-100 hover:bg-red-200': !darkMode 
         }"
       >
         Remove

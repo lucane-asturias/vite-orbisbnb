@@ -1,10 +1,12 @@
 <template>
   <div v-if="notification.active"
-    class="notification flex justify-between bg-whitesmoke p-2 mb-7">
+    class="notification flex justify-between p-2 mb-7"
+    :class="{ 'bg-blackish': darkMode, 'bg-whitesmoke': !darkMode }"  
+  >
 
     <p 
       class="ml-3 text-sm tracking-wide" 
-      :class="{ 'text-teal-600': darkMode, 'text-blue-600': !darkMode }"  
+      :class="{ 'text-teal-400': darkMode, 'text-blue-600': !darkMode }"  
       v-text="notification.message"
     />
 

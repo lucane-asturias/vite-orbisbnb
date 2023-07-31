@@ -1,4 +1,5 @@
 import { ref } from 'vue'
+import { logErrorMessages } from '@vue/apollo-util'
 import { provideApolloClient, useQuery, useMutation } from '@vue/apollo-composable'
 import apolloClient from '../includes/apollo-config'
 import useNotification from './useNotification'
@@ -28,7 +29,12 @@ const useGraphQL = () => {
       setNotification("Listing has been deleted")
     })
 
-    onError(error => console.log(error))
+    onError((error) => {
+      logErrorMessages(error)
+      // console.log('networkError', networkError)
+      // console.log('graphQLErrors', graphQLErrors)
+      // graphQLErrors.map(({ message }) => console.log(message))
+    })
 
     return { mutate }
   }

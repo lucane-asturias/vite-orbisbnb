@@ -1,9 +1,10 @@
 <script lang="ts" setup>
   import { computed, onMounted, ref } from 'vue'
-  import type { Listing as ListingType } from '../interface/listing'
+  import type { Listing as ListingType } from '../interfaces/ListingType'
   import ListingsLayout from '../layout/ListingsLayout.vue'
+  import { useListingsStore } from '../store/listingsStore'
 
-  import useListingsPage from '../composables/useListingsPage'
+  import { useListingsPage } from '../composables/useListingsPage'
 
   import Notification from '@/components/Notification.vue'
   import LoadProgress from '@/components/LoadProgress.vue'
@@ -13,19 +14,23 @@
 
   const { 
     darkMode, toggleDarkMode,
+    creationMode, toggleCreationMode,
     notification, setNotification, toggleNotification,
     useQueryComposable, useMutationComposable,
     result, loading, error,
     removeAllListings
   } = useListingsPage()
 
-  const creationMode = ref<boolean>(false)
+  const listingsStore = useListingsStore()
 
-  // Retrieve the result of the query from GraphQL data
-  const listings = computed<ListingType[]>(() => result.value?.listings ?? []) 
-  const toggleCreationMode = () => creationMode.value = !creationMode.value
+  // Retrieve the query result from GraphQL data
+  const listings = computed<ListingType[]>(() => { 
+    if (!result.value?.listings) return []
+    listingsStore.setListings(result.value.listings)
+    return result.value.listings
+  })
 
-  onMounted(() => setNotification("Welcome to NewlineBnB!"))
+  onMounted(() => setNotification("Welcome to OrbisBnB!"))
 </script>
 
 <template> 
@@ -41,7 +46,7 @@
 
       <Transition name="fade">
         <section v-if="creationMode">
-          <CreateListing :creationMode="creationMode" :darkMode="darkMode" :toggleCreationMode="toggleCreationMode" />
+          <CreateListing :darkMode="darkMode" :toggleCreationMode="toggleCreationMode" />
         </section>
       </Transition>
 
@@ -73,8 +78,8 @@
       </button>
       
       <button v-if="!creationMode"
-        class="fixed z-90 pb-1.5 bottom-10 right-8 w-14 h-14 rounded-full drop-shadow-lg flex justify-center items-center text-white text-4xl bg-blue-600 hover:bg-blue-700 hover:drop-shadow-2xl"
-        :class="darkMode ? 'bg-white hover:bg-gray-200 text-slate-800' : 'bg-black hover:bg-gray-900 text-slate-300'"
+        class="fixed z-90 pb-1.5 bottom-10 right-8 w-14 h-14 rounded-full drop-shadow-lg 
+        flex justify-center items-center text-white text-4xl bg-blue-600 hover:bg-blue-700 hover:drop-shadow-2xl"
         @click="toggleCreationMode"
       >
        &plus;

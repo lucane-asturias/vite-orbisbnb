@@ -2,7 +2,7 @@ import gql from "graphql-tag";
 
 export const typeDefs = gql`
 
-  # This "Listing" type defines the queryable fields.
+  # Defines the queryable fields
   type Listing {
     id: ID!
     title: String!
@@ -16,12 +16,23 @@ export const typeDefs = gql`
     rating: Int!
   }
 
-  # This "Query" type lists all of the available queries, along with the return type
+  # Lists all of the available queries
   type Query {
     listings: [Listing!]!
   }
 
-  # This "Mutation" type expects a scalar type ID to remove a listing
+  type Query {
+    searchListing(id: ID!): Listing!
+  }
+
+  type Mutation {
+    addListing(id: ID!, title: String!, 
+      description: String!, image: String!,
+      address: String!, price: Int!
+      numOfGuests: Int!, numOfBeds: Int!
+      numOfBaths: Int!, rating: Int!): Listing!
+  }
+
   type Mutation {
     deleteListing(id: ID!): Listing!
   }
