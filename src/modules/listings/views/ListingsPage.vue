@@ -1,10 +1,12 @@
 <script lang="ts" setup>
-  import { computed, onMounted, ref } from 'vue'
+  import { storeToRefs } from 'pinia'
+  import { computed, onMounted, ref, watch } from 'vue'
   import type { Listing as ListingType } from '../interfaces/ListingType'
   import ListingsLayout from '../layout/ListingsLayout.vue'
   import { useListingsStore } from '../store/listingsStore'
 
   import { useListingsPage } from '../composables/useListingsPage'
+  import { useSearchListing } from '../composables/useSearchListing'
 
   import Notification from '@/components/Notification.vue'
   import LoadProgress from '@/components/LoadProgress.vue'
@@ -22,12 +24,15 @@
   } = useListingsPage()
 
   const listingsStore = useListingsStore()
+  const { searchListingTitle } = storeToRefs(listingsStore)
+
+  const debounceTimeout = ref<null | number>(null)
 
   // Retrieve the query result from GraphQL data
   const listings = computed<ListingType[]>(() => { 
     if (!result.value?.listings) return []
     listingsStore.setListings(result.value.listings)
-    return result.value.listings
+    return listingsStore.getListingsByTitle(searchListingTitle.value)
   })
 
   onMounted(() => setNotification("Welcome to OrbisBnB!"))

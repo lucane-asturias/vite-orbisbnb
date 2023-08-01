@@ -7,7 +7,8 @@ interface ListingsState { listings: ListingType[] | null }
 
 export const useListingsStore = defineStore('listingsStore', {
   state: () => ({
-    listings: undefined
+    listings: undefined,
+    searchListingTitle: ''
   } as ListingsState),
   actions: {
     setListings(refetchedListings) {
@@ -56,6 +57,15 @@ export const useListingsStore = defineStore('listingsStore', {
       return (id) => {
         return state.listings.find(listing => listing.id === id)
       }
-    }
+    },
+    getListingsByTitle: (state) => {
+      return (title = ''): ListingType => {
+        if (title?.length === 0) return state.listings
+
+        return state.listings.filter(
+          listing => listing.title.toLowerCase().includes(title.toLowerCase())
+        )
+      }
+    }, 
   }
 })
