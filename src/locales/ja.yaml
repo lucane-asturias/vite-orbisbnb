@@ -1,0 +1,35 @@
+navbar_menu:
+  orbis_bnb: オルビスBnB
+  select_language: 言語
+
+listings_page:
+  welcome: オルビスBnBへようこそ！
+  empty: リスティングはもう残っていません！
+  create_one: 作成する
+  error: 何か問題が発生しました。リストを照会できませんでした — 後で再試行してください！
+  delete_all: すべて削除する
+
+listings_list_item:
+  remove: 削除
+
+create_listing:
+  city: 都市名
+  address: 住所
+  description: 物件詳細
+  guests: ゲスト数
+  beds: ベッド数
+  baths: バスルーム数
+  price: 料金
+  image: イメージ
+  rating: 評価
+  submit: 提出
+  close: 閉じる
+
+search_listings:
+  search: 家具を検索...
+  
+language:
+  en: 英語
+  es: スペイン語
+  ja: 日本語
+  pt: ポルトガル語

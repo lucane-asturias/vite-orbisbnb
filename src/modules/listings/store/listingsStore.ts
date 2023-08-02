@@ -61,6 +61,7 @@ export const useListingsStore = defineStore('listingsStore', {
     getListingsByTitle: (state) => {
       return (title = ''): ListingType => {
         if (title?.length === 0) return state.listings
+        else if (!state.listings.length === 0) return
 
         return state.listings.filter(
           listing => listing.title.toLowerCase().includes(title.toLowerCase())

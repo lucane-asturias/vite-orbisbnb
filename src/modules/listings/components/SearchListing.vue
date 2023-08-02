@@ -6,7 +6,7 @@
         'bg-darkgreyish hover:bg-lightgreyish focus:bg-darkgreyish': darkMode, 
         'bg-gray-200 hover:bg-gray-300 focus:bg-white ': !darkMode 
       }"
-      placeholder="Search listings..." 
+      :placeholder="$t('search_listings.search')"
       v-model="searchListingTitleInput"
     />
   </div>

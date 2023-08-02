@@ -26,8 +26,6 @@
   const listingsStore = useListingsStore()
   const { searchListingTitle } = storeToRefs(listingsStore)
 
-  const debounceTimeout = ref<null | number>(null)
-
   // Retrieve the query result from GraphQL data
   const listings = computed<ListingType[]>(() => { 
     if (!result.value?.listings) return []
@@ -60,17 +58,17 @@
       </section>
         
       <div v-else-if="listings && !listings.length && !loading && !creationMode" :class="{ 'text-slate-200': darkMode, 'text-black': !darkMode }">
-        <p>There's any listings left! Create 
+        <p>{{ $t('listings_page.empty') }}
           <span class="cursor-pointer underline font-bold text-gray-700 hover:text-gray-400 hover:opacity-60"
             @click="toggleCreationMode">
-            one
+            {{ $t('listings_page.create_one') }}
           </span>
         </p>
       </div>
 
       <div v-else-if="error">
         <p :class="{ 'text-teal-400': darkMode, 'text-blue-500': !darkMode }" >
-          Something went wrong. We couldn't query for listings - try again later!
+          {{ $t('listings_page.error') }}
         </p>
       </div>
 
@@ -79,12 +77,12 @@
         :class="darkMode ? 'bg-red-600 hover:bg-red-500 text-slate-100' : 'bg-red-600 hover:bg-red-500 text-slate-200'"
         @click="removeAllListings(0)"
       >
-       Delete all 
+       {{ $t('listings_page.delete_all') }}
       </button>
       
       <button v-if="!creationMode"
         class="fixed z-90 pb-1.5 bottom-10 right-8 w-14 h-14 rounded-full drop-shadow-lg 
-        flex justify-center items-center text-white text-4xl bg-blue-600 hover:bg-blue-700 hover:drop-shadow-2xl"
+        text-white text-4xl bg-blue-600 hover:bg-blue-700 hover:drop-shadow-2xl"
         @click="toggleCreationMode"
       >
        &plus;

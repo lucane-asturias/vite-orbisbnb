@@ -1,4 +1,5 @@
 import { ref } from 'vue'
+import { i18n } from '@/includes/i18n'
 import Swal from 'sweetalert2'
 import useGraphQL from '@/composables/useGraphQL'
 import useDarkMode from '@/composables/useDarkMode'
@@ -15,8 +16,11 @@ const { notification, setNotification, toggleNotification } = useNotification()
 
 const { mutate: deleteAllListings } = useMutationComposable(DeleteAllListingsMutation)
 
-const creationMode = ref<boolean>(false)
 const { result, loading, error } = useQueryComposable(ListingsQuery)
+
+const { locale } = i18n.global
+
+const creationMode = ref<boolean>(false)
 
 export const useListingsPage = () => {
 
@@ -25,9 +29,30 @@ export const useListingsPage = () => {
   const removeAllListings = async (zero: number) => {
     const listingsStore = useListingsStore()
 
+    let translatedTitle
+    let translatedText
+
+    switch (locale.value) {
+      case 'pt':
+        translatedTitle = 'Tem certeza?'
+        translatedText = 'Uma vez excluídas, as listagens não poderão ser restauradas.'
+        break;
+      case 'es':
+        translatedTitle = '¿Está seguro?'
+        translatedText = 'Una vez borrados, los listados no pueden restaurarse.'
+        break;
+      case 'ja':
+        translatedTitle = '本当にそれでいいんですか？'
+        translatedText = '一度削除されたら、家具を復元することはできません。'
+        break;
+      default:
+        translatedTitle = 'Are you sure?'
+        translatedText = 'Once deleted, the listings cannot be restored.'
+    }
+
     const { isConfirmed } = await Swal.fire({
-      title: 'Are you sure?',
-      text: "Once deleted, the listings cannot be restored",
+      title: translatedTitle,
+      text: translatedText,
       showDenyButton: true,
       confirmButtonText: 'Yes'
     })
@@ -48,8 +73,29 @@ export const useListingsPage = () => {
         }
       }
 
-      setNotification("All listings have been deleted!")
-      Swal.fire('Deleted', '', 'success')
+      let notification_msg
+      let deleted_msg
+
+      switch (locale.value) {
+      case 'pt':
+        notification_msg = 'Todas as listagens foram removidas!'
+        deleted_msg = 'Deletados!'
+        break;
+      case 'es':
+        notification_msg = 'Todos los listados han sido eliminados!'
+        deleted_msg = 'Eliminados!'
+        break;
+      case 'ja':
+        notification_msg = 'すべてのリストは削除されました！'
+        deleted_msg = '削除されました！'
+        break;
+      default:
+        notification_msg = 'All listings have been deleted!'
+        deleted_msg = 'Deleted'
+    }
+
+      setNotification(`${notification_msg}`)
+      Swal.fire(`${deleted_msg}`, '', 'success')
     }
   }
 

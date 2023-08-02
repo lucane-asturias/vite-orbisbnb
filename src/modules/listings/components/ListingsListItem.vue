@@ -41,13 +41,13 @@
 
     <div class="mr-0.5">
       <button @click="removeListing(listing.id)"
-        class="text-xs tracking-wider border-transparent font-bold py-2 px-3 rounded shadow float-right"
+        class="text-xs sm:text-sm tracking-wider border-transparent font-bold py-2 px-3 rounded shadow float-right"
         :class="{ 
-          'text-red-400 bg-darkgreyish hover:bg-lightgreyish': darkMode, 
-          'text-red-400 bg-red-100 hover:bg-red-200': !darkMode 
+          'text-red-500 bg-darkgreyish hover:bg-lightgreyish': darkMode, 
+          'text-red-500 bg-red-100 hover:bg-red-200': !darkMode 
         }"
       >
-        Remove
+        {{ $t('listings_list_item.remove') }}
       </button>
     </div>
 

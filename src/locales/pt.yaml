@@ -1,0 +1,35 @@
+navbar_menu:
+  orbis_bnb: OrbisBnB
+  select_language: Linguagens
+
+listings_page:
+  welcome: Bem vindo ao OrbisBnB!
+  empty: Não há mais móveis!
+  create_one: Crie um
+  error: Algo deu errado. Não foi possível obter as listanges - tente novamente mais tarde.
+  delete_all: Deletar tudo
+  
+listings_list_item:
+  remove: Remover
+
+create_listing:
+  city: Cidade
+  address: Endereço
+  description: Descrição
+  guests: Quant. de hóspedes
+  beds: Quant. de camas
+  baths: Quant. de banheiros
+  price: Preço
+  image: Imagem
+  rating: Classificação
+  submit: Enviar
+  close: Fechar
+
+search_listings:
+  search: Buscar por mobílias...
+
+language:
+  en: Inglês
+  es: Espanhol
+  ja: Japonês
+  pt: Português

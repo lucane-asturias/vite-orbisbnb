@@ -1,0 +1,35 @@
+navbar_menu:
+  orbis_bnb: OrbisBnB
+  select_language: Select Language
+
+listings_page:
+  welcome: Welcome to OrbisBnB!
+  empty: There's any listings left!
+  create_one: Create one
+  error: Something went wrong. We couldn't query for listings - try again later!
+  delete_all: Delete all
+
+listings_list_item:
+  remove: Remove
+
+create_listing:
+  city: City
+  address: Address
+  description: Description
+  guests: Quantity of guests
+  beds: Quantity of beds
+  baths: Quantity of baths
+  price: Price
+  image: Image
+  rating: Rating
+  submit: Submit
+  close: Close
+
+search_listings:
+  search: Search listings...
+  
+language:
+  en: English
+  es: Spanish
+  ja: Japanese
+  pt: Portuguese

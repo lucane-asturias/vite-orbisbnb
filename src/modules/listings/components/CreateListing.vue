@@ -54,11 +54,11 @@
           <label for="grid-city"
             class="block uppercase tracking-wide text-xs font-bold mb-2" 
             :class="{ 'text-gray-200': darkMode, 'text-gray-700': !darkMode }">
-            City
+            {{ $t('create_listing.city') }}
           </label>
           <vee-field type="text" id="grid-city" name="city" placeholder="Tokyo"
-            class="appearance-none inline-block md:block w-full text-gray-500 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
-            :class="{ 'bg-darkgreyish hover:bg-lightgreyish': darkMode, 'bg-gray-200 hover:bg-gray-300': !darkMode }"
+            class="appearance-none inline-block md:block w-full text-gray-500 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500" 
+            :class="{ 'bg-darkgreyish hover:bg-lightgreyish focus:bg-darkgreyish': darkMode, 'bg-gray-200 hover:bg-gray-300 focus:bg-white': !darkMode }"
           />
           <!-- will generate span tag if there is error -->
           <ErrorMessage class="text-red-600 text-xs italic" name="city" />
@@ -68,11 +68,11 @@
           <label for="grid-address"
             class="block uppercase tracking-wide text-xs font-bold mb-2"
             :class="{ 'text-gray-200': darkMode, 'text-gray-700': !darkMode }">
-            Address
+            {{ $t('create_listing.address') }}
           </label>
           <vee-field type="text" id="grid-address" name="address" placeholder="15-13 Nihonbashi Kabutocho Chuo-ku Tokyo Japan"
-            class="appearance-none inline-block md:block w-full text-gray-500 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
-            :class="{ 'bg-darkgreyish hover:bg-lightgreyish': darkMode, 'bg-gray-200 hover:bg-gray-300': !darkMode }"
+            class="appearance-none inline-block md:block w-full text-gray-500 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500" 
+            :class="{ 'bg-darkgreyish hover:bg-lightgreyish focus:bg-darkgreyish': darkMode, 'bg-gray-200 hover:bg-gray-300': !darkMode }"
           />
           <ErrorMessage class="text-red-600 text-xs italic" name="address" />
         </div>
@@ -81,11 +81,11 @@
           <label for="grid-description"
             class="block uppercase tracking-wide md:mt-4 text-xs font-bold mb-2"
             :class="{ 'text-gray-200': darkMode, 'text-gray-700': !darkMode }">
-            Description
+            {{ $t('create_listing.description') }}
           </label>
           <vee-field type="text" id="grid-description" name="description" placeholder="Description of the city"
-            class="appearance-none block w-full text-gray-500 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            :class="{ 'bg-darkgreyish hover:bg-lightgreyish': darkMode, 'bg-gray-200 hover:bg-gray-300': !darkMode }"
+            class="appearance-none block w-full text-gray-500 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
+            :class="{ 'bg-darkgreyish hover:bg-lightgreyish focus:bg-darkgreyish': darkMode, 'bg-gray-200 hover:bg-gray-300': !darkMode }"
           />
           <ErrorMessage class="text-red-600 text-xs italic" name="description" />
         </div>
@@ -98,11 +98,11 @@
           <label for="grid-guests"
             class="block uppercase tracking-wide text-xs font-bold mb-2"
             :class="{ 'text-gray-200': darkMode, 'text-gray-700': !darkMode }">
-            Quantity of guests
+            {{ $t('create_listing.guests') }}
           </label>
           <vee-field type="number" id="grid-guests" name="guests"
-            class="appearance-none block w-full text-gray-500 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
-            :class="{ 'bg-darkgreyish hover:bg-lightgreyish': darkMode, 'bg-gray-200 hover:bg-gray-300': !darkMode }"
+            class="appearance-none block w-full text-gray-500 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500" 
+            :class="{ 'bg-darkgreyish hover:bg-lightgreyish focus:bg-darkgreyish': darkMode, 'bg-gray-200 hover:bg-gray-300': !darkMode }"
           />
           <ErrorMessage class="text-red-600 text-xs italic" name="guests" />
         </div>
@@ -111,11 +111,11 @@
           <label for="grid-beds" 
             class="block uppercase tracking-wide text-xs font-bold mb-2"
             :class="{ 'text-gray-200': darkMode, 'text-gray-700': !darkMode }">
-            Quantity of beds
+            {{ $t('create_listing.beds') }}
           </label>
           <vee-field type="number" id="grid-beds" name="beds"
-            class="appearance-none block w-full text-gray-500 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
-            :class="{ 'bg-darkgreyish hover:bg-lightgreyish': darkMode, 'bg-gray-200 hover:bg-gray-300': !darkMode }"
+            class="appearance-none block w-full text-gray-500 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500" 
+            :class="{ 'bg-darkgreyish hover:bg-lightgreyish focus:bg-darkgreyish': darkMode, 'bg-gray-200 hover:bg-gray-300': !darkMode }"
           />
           <ErrorMessage class="text-red-600 text-xs italic" name="beds" />
         </div>
@@ -124,11 +124,11 @@
           <label for="grid-baths" 
             class="block uppercase tracking-wide text-xs font-bold mb-2"
             :class="{ 'text-gray-200': darkMode, 'text-gray-700': !darkMode }">
-            Quantity of baths
+            {{ $t('create_listing.baths') }}
           </label>
           <vee-field type="number" id="grid-baths" name="baths"
-            class="appearance-none block w-full text-gray-500 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            :class="{ 'bg-darkgreyish hover:bg-lightgreyish': darkMode, 'bg-gray-200 hover:bg-gray-300': !darkMode }"
+            class="appearance-none block w-full text-gray-500 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
+            :class="{ 'bg-darkgreyish hover:bg-lightgreyish focus:bg-darkgreyish': darkMode, 'bg-gray-200 hover:bg-gray-300': !darkMode }"
           />
           <ErrorMessage class="text-red-600 text-xs italic" name="baths" />
         </div>
@@ -140,7 +140,7 @@
           <label for="grid-price"
             class="block uppercase tracking-wide text-xs font-bold mb-2"
             :class="{ 'text-gray-200': darkMode, 'text-gray-700': !darkMode }">
-            Price
+            {{ $t('create_listing.price') }}
           </label>
 
           <Money3Component @input="isPriceZero"
@@ -148,8 +148,8 @@
             v-bind="moneyConfig"
             id="grid-price" 
             name="price" 
-            class="appearance-none block w-full text-gray-500 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            :class="{ 'bg-darkgreyish hover:bg-lightgreyish': darkMode, 'bg-gray-200 hover:bg-gray-300': !darkMode }"
+            class="appearance-none block w-full text-gray-500 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
+            :class="{ 'bg-darkgreyish hover:bg-lightgreyish focus:bg-darkgreyish': darkMode, 'bg-gray-200 hover:bg-gray-300': !darkMode }"
           />
 
           <p v-if="priceError" class="text-red-600 text-xs italic p-1.5" v-text="priceErrorText" />
@@ -160,7 +160,7 @@
           <label for="file"
             class="block uppercase tracking-wide text-xs font-bold mb-2"  
             :class="{ 'text-gray-200': darkMode, 'text-gray-700': !darkMode }">
-            Image       
+            {{ $t('create_listing.image') }}       
           </label>
 
           <button @click.prevent="onSelectImage"
@@ -170,8 +170,8 @@
               'text-blue-500 bg-slate-100 hover:bg-slate-200': !darkMode 
             }"
           >
+              <i v-if="!fileImage" class="fa fa-upload"></i>
               {{ fileImage ? fileImage.name : 'Select' }}
-              <!-- <i class="fa fa-upload"></i> -->
           </button>
 
           <!-- Image selection simulator -->
@@ -184,11 +184,11 @@
           <label for="grid-numOfBeds"
             class="block uppercase tracking-wide text-xs font-bold mb-2"
             :class="{ 'text-gray-200': darkMode, 'text-gray-700': !darkMode }">
-            Rating
+            {{ $t('create_listing.rating') }}
           </label>
           <vee-field as="select" id="grid-numOfBeds" name="rating" placeholder="1 out a 5"
-            class="cursor-pointer appearance-none block w-full text-gray-500 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            :class="{ 'bg-darkgreyish hover:bg-lightgreyish': darkMode, 'bg-gray-200 hover:bg-gray-300': !darkMode }"
+            class="cursor-pointer appearance-none block w-full text-gray-500 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
+            :class="{ 'bg-darkgreyish hover:bg-lightgreyish focus:bg-darkgreyish': darkMode, 'bg-gray-200 hover:bg-gray-300': !darkMode }"
           >
             <option value="1">1</option>
             <option value="2">2</option>
@@ -204,12 +204,12 @@
 
       <button type="submit" :disabled="creation_in_submission"
         class="w-full text-sm text-blue-100 bg-blue-500 hover:bg-blue-600 font-semibold tracking-widest uppercase border-transparent font-bold mt-4 py-4 px-4 rounded shadow">
-        Submit
+        {{ $t('create_listing.submit') }}
       </button>
       <button 
         class="w-full text-sm bg-red-600 hover:bg-red-700 text-slate-200 font-semibold tracking-widest uppercase mt-4 py-1.5 px-4 rounded shadow" 
         @click.prevent="toggleCreationMode">
-        Close
+        {{ $t('create_listing.close') }}
       </button>
 
     </vee-form>
