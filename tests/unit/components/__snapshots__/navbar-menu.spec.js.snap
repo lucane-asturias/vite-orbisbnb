@@ -1,0 +1,20 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Tests on the NavbarMenu.vue component > should match snapshot 1`] = `
+"<nav data-v-93d49201=\\"\\" class=\\"border-gray-200 dark:bg-gray-900\\">
+  <menu data-v-93d49201=\\"\\" class=\\"flex justify-between items-center mx-auto p-4 mx-5 lg:mx-7\\">
+    <router-link-stub data-v-93d49201=\\"\\" to=\\"/\\" custom=\\"false\\"></router-link-stub>
+    <div data-v-93d49201=\\"\\" class=\\"flex items-center\\">
+      <search-listing-stub data-v-93d49201=\\"\\" darkmode=\\"false\\"></search-listing-stub><button data-v-93d49201=\\"\\" class=\\"hidden sm:block ml-5 text-md font-semibold py-1 sm:py-3 px-3 rounded shadow float-right text-gray-900 bg-slate-200 hover:bg-gray-300\\">Dark Mode</button><select data-v-93d49201=\\"\\" class=\\"fa cursor-pointer appearance-none text-lg w-11 sm:w-12 h-full sm:h-12 bg-gray-200 border border-gray-200 text-gray-500 py-2.5 sm:py-2.5 px-3 sm:px-3.5 ml-5 rounded leading-tight focus:outline-none focus:border-gray-500 font-bold tracking-normal lg:tracking-widest bg-gray-200 hover:bg-gray-300\\">
+        <option data-v-93d49201=\\"\\" hidden=\\"\\" aria-hidden=\\"true\\" value=\\"#\\"></option>
+        <option data-v-93d49201=\\"\\" disabled=\\"\\">navbar_menu.select_language</option>
+        <option data-v-93d49201=\\"\\" value=\\"en\\">language.en</option>
+        <option data-v-93d49201=\\"\\" value=\\"pt\\">language.pt</option>
+        <option data-v-93d49201=\\"\\" value=\\"es\\">language.es</option>
+        <option data-v-93d49201=\\"\\" value=\\"ja\\">language.ja</option>
+      </select>
+    </div>
+    <div data-v-93d49201=\\"\\" id=\\"darkmodetoggle\\" class=\\"block sm:hidden darkmode-fixed-bottom-left\\"> Toggle darkmode </div>
+  </menu>
+</nav>"
+`;

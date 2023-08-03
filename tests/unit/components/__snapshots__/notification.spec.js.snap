@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Tests on the Notification.vue component > should render the component correctly 1`] = `
+"<div class=\\"notification flex justify-between p-2 mb-7 bg-whitesmoke\\">
+  <p class=\\"ml-3 text-sm tracking-wide text-blue-600\\">Testing Notification</p><button class=\\"x\\"></button>
+</div>"
+`;

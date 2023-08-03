@@ -1,0 +1,8 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ListingsLayout.vue > should render the component correctly 1`] = `
+"<header data-v-3d08b192=\\"\\" class=\\"basic-layout overflow-auto\\">
+  <navbar-menu-stub data-v-3d08b192=\\"\\"></navbar-menu-stub>
+  <div data-v-3d08b192=\\"\\" class=\\"container py-10 lg:px-10 mx-auto py-6 px-4\\"><code id=\\"one\\">Test Content</code><code id=\\"two\\">Test Content Two</code></div>
+</header>"
+`;

@@ -62,7 +62,7 @@
       <div class="flex items-center">
         <SearchListing :darkMode="darkMode" />
         <button 
-          class="hidden sm:block ml-5 text-md font-semibold py-1 sm:py-3 px-3 rounded shadow border border-gray-200 focus:outline-none focus:border-gray-500 float-right" 
+          class="hidden sm:block ml-5 text-md font-semibold py-1 sm:py-3 px-3 rounded shadow float-right" 
           :class="{ 
            'text-gray-100 bg-slate-800 hover:bg-gray-900': darkMode,
            'text-gray-900 bg-slate-200 hover:bg-gray-300': !darkMode
