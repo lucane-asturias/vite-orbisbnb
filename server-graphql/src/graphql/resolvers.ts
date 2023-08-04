@@ -6,9 +6,6 @@ export const resolvers = {
   Query: {
     listings: () => {
       return listings
-    },
-    searchListing: (_root: undefined, { id }: { id: string }) => {
-      return listings.find((listing) => listing.id === id)
     }
   },
   Mutation: {

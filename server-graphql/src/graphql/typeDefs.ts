@@ -21,10 +21,6 @@ export const typeDefs = gql`
     listings: [Listing!]!
   }
 
-  type Query {
-    searchListing(id: ID!): Listing!
-  }
-
   type Mutation {
     addListing(id: ID!, title: String!, 
       description: String!, image: String!,

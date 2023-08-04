@@ -54,23 +54,7 @@ export const useListingsListItem = () => {
       const isExpired = listingsStore.storageTimerById(id)
 
       if (isExpired) {
-        let notification_msg
-
-        switch (locale.value) {
-          case 'pt':
-            notification_msg = 'Uma mobília foi deletada!'
-            break;
-          case 'es':
-            notification_msg = '¡El mueble fue eliminado!'
-            break;
-          case 'ja':
-            notification_msg = 'その家具は削除されました！'
-            break;
-          default:
-            notification_msg = 'The listing has been deleted!'
-        }
-
-
+        // TODO: translations
         Swal.fire('Sorry', '10 minutes has expired, not able to delete', '', 'error')
         return
       }
@@ -82,8 +66,6 @@ export const useListingsListItem = () => {
       await deleteListing({ id })
       listingsStore.removeStorageTokenObj(id)
 
-      
-
       switch (locale.value) {
         case 'pt':
           notification_msg = 'Uma mobília foi deletada!'
@@ -92,11 +74,11 @@ export const useListingsListItem = () => {
           notification_msg = '¡El mueble fue eliminado!'
           break;
         case 'ja':
-          notification_msg = 'その家具は削除された！'
+          notification_msg = 'その家具は削除されました！'
           break;
         default:
           notification_msg = 'The listing has been deleted!'
-      }
+        }
 
       Swal.fire(`${notification_msg}`, '', 'success')
     }

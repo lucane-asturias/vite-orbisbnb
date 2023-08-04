@@ -30,7 +30,7 @@ const creation_alert_msg = ref<string>('Please wait! Your furniture is being add
 const { locale } = i18n.global
 
 export const useCreateListing = () => {
-  const listingsStore = useListingsStore()
+  
 
   const hiddenSelectRef = ref<null | HTMLInputElement>(null)
   const localImage = ref<boolean | undefined | object>(false)
@@ -159,6 +159,8 @@ export const useCreateListing = () => {
       creation_alert_msg.value = 'You are offline. Please try again later.'
       return
     }
+
+    const listingsStore = useListingsStore()
 
     const id = uuidv4()
     const { 

@@ -37,6 +37,5 @@ export const listingsMockData = [
     numOfBeds: 2,
     numOfBaths: 2,
     rating: 3,
-  }
-]
-  
+  },
+];
