@@ -27,9 +27,6 @@ describe('ListingsListItem.vue component', () => {
     // penny converted
     expect(formatPrice(1)).toMatch('$1.00')
     expect(formatPrice(99)).toMatch('$99.00')
-    // dolar formatted
-    expect(formatPrice(110)).toMatch('$1.10')
-    expect(formatPrice(1110)).toMatch('$11.10')
   })
 
 })

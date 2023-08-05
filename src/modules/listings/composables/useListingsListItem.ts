@@ -85,10 +85,8 @@ export const useListingsListItem = () => {
   }
 
   const formatPrice = (price) => {
-    if (price <= 99) return `$${price.toFixed(2)}`
-
     const options = { minimumFractionDigits: 2, style: "currency", currency: "USD" }
-    return new Intl.NumberFormat('en-US', options).format(price / 100)
+    return new Intl.NumberFormat('en-US', options).format(price)
   }
 
   return { darkMode, removeListing, formatPrice }

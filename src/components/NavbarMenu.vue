@@ -1,15 +1,17 @@
 <script lang="ts" setup>
-  import { computed } from 'vue'
+  import { computed, ref } from 'vue'
   import { useI18n } from 'vue-i18n'
   import { setLocale } from '@vee-validate/i18n'
   import SearchListing from '@/modules/listings/components/SearchListing.vue'
-  import { useListingsStore } from '@/modules/listings/store/listingsStore'
   import useDarkMode from '../composables/useDarkMode'
 
-  const listingsStore = useListingsStore()
   const { darkMode, toggleDarkMode } = useDarkMode()
 
   const { locale } = useI18n({ useScope: 'global' })
+
+  const openLanguages = ref<boolean>(false)
+
+  const languageToggler = () => openLanguages.value = !openLanguages.value
 
   const darkModeButtonText = computed<string>(() => {
     switch (locale.value) {
@@ -27,8 +29,8 @@
     }
   })
 
-  const changeLocale = (event: PointerEvent) => {
-    switch (event.target.value) {
+  const changeLocale = (language) => {
+    switch (language) {
       case 'pt':
         locale.value = 'pt'
         setLocale('pt_BR')
@@ -50,7 +52,7 @@
 </script>
 
 <template>
-  <nav class="border-gray-200 dark:bg-gray-900">
+  <nav class="sborder-gray-200 dark:bg-gray-900 relative">
     <menu class="flex justify-between items-center mx-auto p-4 mx-5 lg:mx-7">
 
       <router-link to="/">
@@ -59,26 +61,72 @@
         </span>
       </router-link>
 
+
       <div class="flex items-center">
         <SearchListing :darkMode="darkMode" />
+
         <button 
           class="hidden sm:block ml-5 text-md font-semibold py-1 sm:py-3 px-3 rounded shadow float-right" 
           :class="{ 
-           'text-gray-100 bg-slate-800 hover:bg-gray-900': darkMode,
+           'text-gray-100 bg-slate-800 hover:bg-gray-700': darkMode,
            'text-gray-900 bg-slate-200 hover:bg-gray-300': !darkMode
           }"
           @click="toggleDarkMode"
         >
          {{ darkModeButtonText }}
         </button>
-        <select @click.prevent="changeLocale"
-          class="fa cursor-pointer appearance-none text-lg w-11 sm:w-12 h-full sm:h-12 bg-gray-200 border border-gray-200 text-gray-500 
-            py-2.5 sm:py-2.5 px-3 sm:px-3.5 ml-5 rounded leading-tight focus:outline-none focus:border-gray-500 font-bold tracking-normal lg:tracking-widest"
-          :class="{ 
-            'bg-slate-800 hover:bg-lightgreyish focus:bg-slate-800': darkMode, 
-            'bg-gray-200 hover:bg-gray-300': !darkMode 
-          }"
 
+        <button @click="languageToggler" class="cursor-pointer border-none text-white mr-3 ml-5 p-0">
+          <img class="w-6 h-7 text-transparent"
+            alt="Language Switcher" 
+            src="https://nodejs.org/static/images/language-picker.svg"
+          />
+        </button>
+
+        <Transition name="fade">
+          <ul v-if="openLanguages"
+            class="flex flex-col max-h-96 min-h-48 list-none m-0 overflow-auto py-3 pb-2 absolute right-0 top-full bg-gray-900 z-50">
+
+            <li @click.prevent="changeLocale('en')"
+              class="relative inline-block w-full text-center cursor-pointer border-none pb-0 px-9 py-2 pb-2
+                bg-transparent text-sm text-slate-300 hover:bg-gray-600 leading-normal hover:underline decoration-1 uppercase"
+            >
+              {{ $t('language.en') }}
+            </li>
+
+            <li @click.prevent="changeLocale('pt')"
+            class="relative inline-block w-full text-center cursor-pointer border-none pb-0 px-9 py-3 pb-2
+              bg-transparent text-sm text-sm text-slate-300 hover:bg-gray-600 leading-normal hover:underline decoration-1 uppercase"
+            >
+              {{ $t('language.pt') }}
+            </li>
+
+            <li @click.prevent="changeLocale('es')"
+            class="relative inline-block w-full text-center cursor-pointer border-none pb-0 px-9 py-3 pb-2
+              bg-transparent text-sm text-sm text-slate-300 hover:bg-gray-600 leading-normal hover:underline decoration-1 uppercase"
+            >
+              {{ $t('language.es') }}
+            </li>
+
+            <li @click.prevent="changeLocale('ja')"
+            class="relative inline-block w-full text-center cursor-pointer border-none pb-0 px-9 py-3 pb-2
+              bg-transparent text-sm text-sm text-slate-300 hover:bg-gray-600 leading-normal hover:underline decoration-1 uppercase"
+            >
+              {{ $t('language.ja') }}
+            </li>
+
+          </ul>
+        </Transition>
+
+        <!-- Older solution (couldn't style select correctly) -->
+        <!-- <select @click.prevent="changeLocale"
+          class="fa cursor-pointer appearance-none text-lg w-11 sm:w-12 h-full sm:h-12 border-l-gray-700 
+          py-2.5 sm:py-2.5 px-3 sm:px-3.5 ml-5 rounded-lg leading-tight font-bold tracking-normal lg:tracking-widest 
+          border-gray-600 placeholder-gray-400 focus:outline-none"
+          :class="{ 
+            'text-slate-100 bg-slate-800 hover:bg-gray-700 focus:bg-gray-700': darkMode, 
+            'text-slate-600 bg-slate-200 hover:bg-gray-300 focus:bg-gray-300': !darkMode 
+          }"
         >
           <option hidden selected value="#" aria-hidden="true">&#xf57d;</option>
           <option disabled>{{ $t('navbar_menu.select_language') }}</option>
@@ -86,19 +134,32 @@
           <option value="pt">{{ $t('language.pt') }}</option>
           <option value="es">{{ $t('language.es') }}</option>
           <option value="ja">{{ $t('language.ja') }}</option>
-        </select>
+        </select> -->
 
       </div>
+
       <div id="darkmodetoggle" @click="toggleDarkMode"
         class="block sm:hidden darkmode-fixed-bottom-left"
         :class="darkMode ? 'darkmodetoggle' : ''">
         Toggle darkmode
       </div>
+
     </menu>
   </nav>
 </template>
 
 <style lang="css" scoped>
+.fade-leave-active,
+.fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
+
 .darkmode-fixed-bottom-left {
   position: fixed !important;
   z-index: 9999999999;

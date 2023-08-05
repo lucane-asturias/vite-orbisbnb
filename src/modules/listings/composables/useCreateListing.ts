@@ -60,22 +60,33 @@ export const useCreateListing = () => {
     }, 1500)
   }
 
+  const onFileError = () => {
+    fileError.value = true
+    localImage.value = false
+    fileImage.value = undefined
+    creation_in_submission.value = true
+  }
+
   const onSelectImage = () => hiddenSelectRef.value.click()
 
-  const onSelectedImage = async (event: Event<HTMLInputElement>) => {
-    if (!event.target.files.length) {
-      fileImage.value = undefined
-      fileError.value = true
-      localImage.value = false
+  const onSelectedImage = (event: Event<HTMLInputElement>) => {
+    fileError.value = false
+
+    if (event.target.files.length === 0) {
+      onFileError()
+      fileErrorText.vale = 'Please, select an image file'
       return
     }
 
     creation_in_submission.value = false
-    fileError.value = false
 
     const fileTemp: File = event.target.files[0]
 
-    if (tempFile.type === 'image/jpeg' || 'image/png') {
+    if (
+      (fileTemp.type === 'image/jpg') || 
+      (fileTemp.type === 'image/jpeg') || 
+      (fileTemp.type === 'image/png')
+    ) {
       fileImage.value = fileTemp
 
       const reader = new FileReader()
@@ -84,19 +95,20 @@ export const useCreateListing = () => {
     } else {
       switch (locale.value) {
         case 'pt':
-          fileError.value = 'Arquivo inválido. Carregue uma imagem no formato JPG ou PNG.'
-          creation_in_submission.value = true
+          fileErrorText.value = 'Arquivo inválido. Carregue uma imagem no formato JPG ou PNG.'
+          onFileError()
           break;
         case 'es':
-          fileError.value = 'Fichero no valido. Suba un fichero JPG o PNG.'
-          creation_in_submission.value = true
+          fileErrorText.value = 'Fichero no valido. Suba un fichero JPG o PNG.'
+          onFileError()
           break;
         case 'ja':
-          fileError.value = 'ファイルが有効ではありません。 JPGまたはPNG形式のイメージをアップロードしてください。'
-          creation_in_submission.value = true
+          fileErrorText.value = 'ファイルが有効ではありません。 JPGまたはPNG形式のイメージをアップロードしてください。'
+          onFileError()
           break;
         default:
-          fileError.value = 'Invalid file. Upload an image in JPG or PNG format.'
+          fileErrorText.value = 'Invalid file. Upload an image in JPG or PNG format.'
+          onFileError()
       }
     }
   }
@@ -117,7 +129,7 @@ export const useCreateListing = () => {
           Swal.fire('Select an image', 'Please, don\'t forget to select one picture!')
       }
       return
-    } else if (priceAmount.value === 0) {
+    } else if (priceError.value) {
       switch (locale.value) {
         case 'pt':
           Swal.fire('Preço obrigatório', 'Por favor, preencha o campo de preço')
@@ -178,7 +190,6 @@ export const useCreateListing = () => {
       console.error('Error uploading image: check the logs', error)
       return
     }
-
     const formattedPrice: string = String(priceAmount.value).replace('.', '').replace(',', '')
     const price: number = parseInt(formattedPrice)
     const image: string = cloudinaryImageUrl.value
@@ -218,7 +229,7 @@ export const useCreateListing = () => {
         creation_alert_msg.value = 'Your furniture has been added!'
     }
 
-    Swal.fire('Success!', `${creation_alert_msg}`, 'success')
+    Swal.fire('Success!', `${creation_alert_msg.value}`, 'success')
     setTimeout(() => creation_in_submission.value = false, 5000)
 
     switch (locale.value) {
