@@ -10,6 +10,9 @@
 
 ## Overview
 
+![image](https://res.cloudinary.com/dyswc6bns/image/upload/v1691304008/portfolio/web_orbisbnb_puma9h.png)
+![image](https://res.cloudinary.com/dyswc6bns/image/upload/v1691304007/portfolio/mobile_orbisbnb_pigwc6.png)
+
 A project mostly focused on learning how a web client interacts with GraphQL API. 
 It uses Vue Apollo library to interact with Graphql API and perform requests (queries and mutations), which makes it easier to fetch data from components.
 While I was at it, I reapply most of what I've been learning recently, like form validation (VeeValidate), i18n, formating objects after consuming API's, etc.
